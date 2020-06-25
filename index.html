@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Keyboard Shortcut Image Generator v0.1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css"> -->
+    
+    <link rel="stylesheet" href="css/spectre.min.css">
+    <link rel="stylesheet" href="css/spectre-exp.min.css">
+    <link rel="stylesheet" href="css/spectre-icons.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <style>
+        .grid-hero h2 {
+            color: #455060;
+            font-size: .9rem;
+            font-weight: 400;
+            line-height: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+
+    <style>
+        /* keystyles stack overflow */
+        kbd {
+    display: inline-block;
+    margin: 0 .1em;
+    padding: .1em .6em;
+    font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #242729;
+    text-shadow: 0 1px 0 #FFF;
+    background-color: #e1e3e5;
+    border: 1px solid #adb3b9;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(12,13,14,0.2), 0 0 0 2px #FFF inset;
+    white-space: nowrap;
+}
+    </style>
+</head>
+
+<body>
+    <div class="section section-hero bg-gray">
+        <div class="grid-hero container grid-lg text-center" id="overview">
+            <div class="docs-brand"><a class="docs-logo" href="index.html"><img src="img/spectre-logo.svg" alt="Spectre.css CSS Framework">
+                    <h2>SPECTRE</h2>
+                </a></div>
+            <h1>Key-Short-img</h1>
+            <h2>A
+                <u>Keyboard</u>-<u>Shortcut</u>-<u>Image</u> Generator
+            </h2>
+            <p>
+                <input class="form-input" type="text" id="kb-input" placeholder="Name" style="width: 50%; margin: auto;">
+            </p>
+            <div class="text-center">
+                <h2>Image Output</h2>
+                <p>
+                    <kbd>CTRL</kbd>-<kbd>Alt</kbd>-<kbd>C</kbd>
+                </p>
+            </div>
+            <p><a class="btn btn-primary btn-lg mr-2" href="getting-started.html">Docs</a><a class="btn btn-primary btn-lg"
+                    href="https://github.com/picturepan2/spectre" target="_blank">GitHub</a></p>
+            <p class="text-gray">Latest version: <span class="version"></span></p>
+            <div class="columns">
+                <div class="column col-4 col-xs-12">
+                    <div class="card text-center">
+                        <div class="card-header"><span class="card-title">Lightweight</span></div>
+                        <div class="card-body">Lightweight (~10KB gzipped) starting point for your projects</div>
+                    </div>
+                </div>
+                <div class="column col-4 col-xs-12">
+                    <div class="card text-center">
+                        <div class="card-header"><span class="card-title">Responsive</span></div>
+                        <div class="card-body">Flexbox-based, responsive and mobile-friendly layout</div>
+                    </div>
+                </div>
+                <div class="column col-4 col-xs-12">
+                    <div class="card text-center">
+                        <div class="card-header"><span class="card-title">Modern</span></div>
+                        <div class="card-body">Elegantly designed and developed elements and components</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
