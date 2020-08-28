@@ -52,28 +52,29 @@ $('document').ready(function () {
 
     $('body').keydown(function (e) {
         const id = 'k'+e.keyCode;
-        console.log('down = ' + keyMap[id]);
+        console.log('down = ' + keyMap[id]+ ", keycode = "+e.keyCode);
 
         var kbString = '';
         var kbHtmlString = '';
 
         if (e.ctrlKey) {
             kbString += 'Ctrl + ';
-            kbHtmlString += '<kbd>Ctrl</kbd>-';
+            kbHtmlString += '<kbd>Ctrl</kbd>+';
         }
 
         if(e.altKey){
             kbString += 'Alt + ';
-            kbHtmlString += '<kbd>Alt</kbd>-';
+            kbHtmlString += '<kbd>Alt</kbd>+';
         }
 
         if (e.shiftKey) {
             kbString += 'Shift + ';
-            kbHtmlString += '<kbd>Shift</kbd>-';
+            kbHtmlString += '<kbd>Shift</kbd>+';
         }
 
         if (e.key != 'Control' && e.key != 'Shift' && e.key != 'Alt') {
             kbString += e.key;
+            console.log(e.key);
             kbHtmlString += '<kbd>' + e.key + '</kbd>';
         }
 

@@ -23,12 +23,12 @@
     </style>
 		<style>
         #container-output-location {
-          // transform: scale(5.0);
+           /* transform: scale(5.0); */
           display: inline-block;
         }
         
         #output-location {
-          background-color: #ACFFA820;
+          /* background-color: #ACFFA820; */
           border-radius: 3px;
           padding: 10px;
         }
@@ -49,92 +49,59 @@
           box-shadow: 0 1px 0 rgba(12,13,14,0.2), 0 0 0 2px #FFF inset;
           white-space: nowrap;
         }
+
+		#credits {
+			position: fixed;
+			bottom: 0;
+			left: 45%;
+		}
     </style>
 	</head>
 	<body>
 		<div class="section section-hero bg-gray">
 			<div class="grid-hero container grid-lg text-center" id="overview">
 				<div class="docs-brand">
-					<a class="docs-logo" href="index.html">
-						<img src="img/spectre-logo.svg" alt="Spectre.css CSS Framework">
-							<h2>SPECTRE</h2>
-						</a>
-					</div>
+					<br>
 					<h1>Key-Short-img</h1>
-					<h2>A
-      
-												
-						
-						<u>Keyboard</u>-
-												
-						
-						<u>Shortcut</u>-
-												
-						
-						<u>Image</u> Generator
-  
-											
-					
+					<h2>
+						A <u>Keyboard</u>-<u>Shortcut</u>-<u>Image</u> Generator
 					</h2>
 					<p>
-						<input class="form-input" type="text" id="kb-input" placeholder="Name" style="width: 50%; margin: auto;" />
+						<input class="form-input" type="text" id="kb-input" placeholder="Press Any Keyboard Shortcut" style="width: 50%; margin: auto;" />
 					</p>
 					<div >
 						<h2>Image Output</h2>
 						<div id="container-output-location">
 							<p id="output-location">
-								<kbd>CTRL</kbd>-
-															
-									
-								<kbd>Alt</kbd>-
-															
-									
+								<kbd>Ctrl</kbd>+
+								<kbd>Alt</kbd>+
 								<kbd>C</kbd>
 							</p>
 						</div>
 					</div>
 					<br/>
 					<div>
-						<button type="button" id="save-btn">Generate image</button>
+						<button class="btn btn-primary btn-lg" type="button" id="save-btn">Generate image</button>
 					</div>
+
+					<br>
+					<br>
+					<h2>
+						<a href="https://github.com/monsterbrain/keyboard-shortcut-image-generator">
+							<img src="img/GitHub-Mark-32px.png" alt="github logo"> Source on Github </a> / <a href="https://github.com/monsterbrain/keyboard-shortcut-image-generator/issues">Post an issue / request new feature</a>
+					</h2>
+				
+					
+					<p class="text-gray">
+						Created by <a href="https://github.com/monsterbrain">Monster Brain</a> / <a href="https://github.com/alexis-">Alex Incognito</a> -- Last Updated: 28-08-2020
+					</p>
+
 					<br/>
-					<p>
-						<a class="btn btn-primary btn-lg mr-2" href="getting-started.html">Docs</a>
-						<a class="btn btn-primary btn-lg"
-          href="https://github.com/picturepan2/spectre" target="_blank">GitHub</a>
-					</p>
-					<p class="text-gray">Latest version: 
-													
-							
-						<span class="version"></span>
-					</p>
-					<div class="columns">
-						<div class="column col-4 col-xs-12">
-							<div class="card text-center">
-								<div class="card-header">
-									<span class="card-title">Lightweight</span>
-								</div>
-								<div class="card-body">Lightweight (~10KB gzipped) starting point for your projects</div>
-							</div>
-						</div>
-						<div class="column col-4 col-xs-12">
-							<div class="card text-center">
-								<div class="card-header">
-									<span class="card-title">Responsive</span>
-								</div>
-								<div class="card-body">Flexbox-based, responsive and mobile-friendly layout</div>
-							</div>
-						</div>
-						<div class="column col-4 col-xs-12">
-							<div class="card text-center">
-								<div class="card-header">
-									<span class="card-title">Modern</span>
-								</div>
-								<div class="card-body">Elegantly designed and developed elements and components</div>
-							</div>
-						</div>
+					<a class="docs-logo" href="https://github.com/picturepan2/spectre">
+						<img src="img/spectre-logo.svg" alt="Spectre.css CSS Framework">
+							<h2>powered by SPECTRE.css</h2>
+						</a>
 					</div>
-				</div>
 			</div>
 		</body>
 	</html>
