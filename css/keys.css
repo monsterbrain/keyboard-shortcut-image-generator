@@ -1,0 +1,751 @@
+.keyboard-key {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  color: #aaa;
+  font: bold 12px arial;
+  text-decoration: none;
+  text-align: center;
+  width: 44px;
+  height: 41px;
+  background: #eff0f2;
+  border-radius: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 0 25px #e8e8e8, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 2px 3px #333;
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);
+  margin: 0px;
+}
+.keyboard-key.dark {
+  color: #aaa;
+  background: #222;
+  box-shadow: inset 0 0 25px #333, 0 1px 0 #000, 0 2px 0 #222, 0 2px 3px #333;
+  text-shadow: 0px -1px 0px #000;
+}
+.keyboard-key:active,
+.keyboard-keydown {
+  color: #888;
+  background: #ebeced;
+  margin: 0px 0px -2px 0px;
+  box-shadow: inset 0 0 25px #ddd, 0 0 3px #333;
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+}
+.keyboard-key.dark:active,
+.keyboard-keydown.dark {
+  color: #888;
+  background: #222;
+  box-shadow: inset 0 0 25px #333, 0 0 3px #333;
+}
+.short {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bottom-right {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.bottom-left {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+.bottom-center {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* functions */
+.keyboard-key.f1 {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.f1::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "F1";
+}
+.keyboard-key.f2 {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.f2::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "F2";
+}
+.keyboard-key.f3 {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.f3::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "F3";
+}
+.keyboard-key.f4 {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.f4::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "F4";
+}
+.keyboard-key.f5 {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.f5::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "F5";
+}
+.keyboard-key.f6 {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.f6::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "F6";
+}
+.keyboard-key.f7 {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.f7::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "F7";
+}
+.keyboard-key.f8 {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.f8::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "F8";
+}
+.keyboard-key.f9 {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.f9::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "F9";
+}
+.keyboard-key.f10 {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.f10::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "F10";
+}
+.keyboard-key.f11 {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.f11::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "F11";
+}
+.keyboard-key.f12 {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.f12::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "F12";
+}
+.keyboard-key.eject {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.eject::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  content: "EJECT";
+}
+/* numbers */
+.keyboard-key.one::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "1";
+}
+.keyboard-key.two::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "2";
+}
+.keyboard-key.three::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "3";
+}
+.keyboard-key.four::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "4";
+}
+.keyboard-key.five::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "5";
+}
+.keyboard-key.six::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "6";
+}
+.keyboard-key.seven::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "7";
+}
+.keyboard-key.eight::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "8";
+}
+.keyboard-key.nine::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "9";
+}
+.keyboard-key.zero::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "0";
+}
+/* alphabet */
+.keyboard-key.q::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "q";
+}
+.keyboard-key.w::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "w";
+}
+.keyboard-key.e::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "e";
+}
+.keyboard-key.r::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "r";
+}
+.keyboard-key.t::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "t";
+}
+.keyboard-key.y::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "y";
+}
+.keyboard-key.u::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "u";
+}
+.keyboard-key.i::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "i";
+}
+.keyboard-key.o::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "o";
+}
+.keyboard-key.p::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "p";
+}
+.keyboard-key.a::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "a";
+}
+.keyboard-key.s::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "s";
+}
+.keyboard-key.d::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "d";
+}
+.keyboard-key.f::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "f";
+}
+.keyboard-key.g::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "g";
+}
+.keyboard-key.h::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "h";
+}
+.keyboard-key.j::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "j";
+}
+.keyboard-key.k::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "k";
+}
+.keyboard-key.l::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "l";
+}
+.keyboard-key.z::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "z";
+}
+.keyboard-key.x::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "x";
+}
+.keyboard-key.c::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "c";
+}
+.keyboard-key.v::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "v";
+}
+.keyboard-key.b::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "b";
+}
+.keyboard-key.n::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "n";
+}
+.keyboard-key.m::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  content: "m";
+}
+/* utility */
+.keyboard-key.esc {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.esc::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 10px;
+  content: "esc";
+}
+.keyboard-key.alt::before {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 10px;
+  content: "alt";
+}
+.keyboard-key.cmd {
+  width: 72px;
+}
+.keyboard-key.cmd::before {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 10px;
+  content: "cmd";
+}
+.keyboard-key.win {
+  width: 56px;
+}
+.keyboard-key.win::before {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 10px;
+  content: "win";
+}
+.keyboard-key.meta {
+  width: 56px;
+}
+.keyboard-key.meta::before {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 10px;
+  content: "meta";
+}
+.keyboard-key.ctrl::before {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 10px;
+  content: "ctrl";
+}
+.keyboard-key.delete::before {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 10px;
+  content: "delete";
+}
+.keyboard-key.option::before {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 10px;
+  content: "option";
+}
+.keyboard-key.return {
+  width: 72px;
+}
+.keyboard-key.return::before {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 10px;
+  content: "return";
+}
+.keyboard-key.shift {
+  width: 72px;
+}
+.keyboard-key.shift::before {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 10px;
+  content: "shift";
+}
+.keyboard-key.space {
+  width: 226px;
+}
+.keyboard-key.tab {
+  width: 72px;
+}
+.keyboard-key.tab::before {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 10px;
+  content: "tab";
+}
+/* arrows */
+.keyboard-key.up {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.up::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 10px;
+  content: "▲";
+}
+.keyboard-key.down {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.down::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 10px;
+  content: "▼";
+}
+.keyboard-key.left {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.left::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 10px;
+  content: "◀";
+}
+.keyboard-key.right {
+  font-size: 8px;
+  height: 26px;
+  width: 46px;
+}
+.keyboard-key.right::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 10px;
+  content: "▶";
+}

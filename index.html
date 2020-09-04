@@ -9,7 +9,9 @@
 		<link rel="stylesheet" href="css/spectre.min.css" />
 		<link rel="stylesheet" href="css/spectre-exp.min.css" />
 		<link rel="stylesheet" href="css/spectre-icons.min.css" />
+		<link rel="stylesheet" href="css/keys.css" />
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="js/platform1.3.5.js"></script>
 		<script src="js/html2canvas.min.js"></script>
 		<script src="js/main.js"></script>
 		<style>
@@ -55,6 +57,11 @@
 			bottom: 0;
 			left: 45%;
 		}
+
+		#img-preview-div{
+			margin-top: 2vh;
+    		border: 1px dashed;
+		}
     </style>
 	</head>
 	<body>
@@ -66,8 +73,26 @@
 					<h2>
 						A <u>Keyboard</u>-<u>Shortcut</u>-<u>Image</u> Generator
 					</h2>
+					
+					<form>
+						<div class="form-group">
+							OS : 
+							<label class="form-radio form-inline">
+							  <input type="radio" name="windows" checked><i class="form-icon"></i> Windows
+							</label>
+							<label class="form-radio form-inline">
+							  <input type="radio" name="mac"><i class="form-icon"></i> Mac
+							</label>
+							<label class="form-radio form-inline">
+								<input type="radio" name="other"><i class="form-icon"></i> Other
+							  </label>
+						</div>
+					  </form>
 					<p>
-						<input class="form-input" type="text" id="kb-input" placeholder="Press Any Keyboard Shortcut" style="width: 50%; margin: auto;" />
+						<label class="form-radio form-inline"></label>
+							<icon id="meta-toggle" class="keyboard-key cmd"></icon>
+						</label>
+						<input class="form-input form-inline" type="text" id="kb-input" placeholder="Press Any Keyboard Shortcut" style="width: 50%; margin: auto;" />
 					</p>
 					<div >
 						<h2>Image Output</h2>
@@ -82,6 +107,12 @@
 					<br/>
 					<div>
 						<button class="btn btn-primary btn-lg" type="button" id="save-btn">Generate image</button>
+					</div>
+
+					<div id="img-preview-div">
+						<h2>Generated Image - (<b>Right click -> Save image as</b> to save the image)</h2>
+						<div id="img-out-preview">
+						</div>
 					</div>
 
 					<br>
