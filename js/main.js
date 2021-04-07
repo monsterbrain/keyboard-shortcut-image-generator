@@ -1,8 +1,10 @@
-let OS = {windows:"windows", mac:"mac",other:"other"}
+let OS = {windows:"windows", mac:"mac",other:"other", userText: "text"}
 var myOs = OS.windows; // default
 
 var prefixKeys = "";
 var prefixKeysHtml = "";
+
+var isTextInputMode = false;
 
 $('document').ready(function () {
     if(platform.os.family.indexOf("Win") != -1) {
@@ -22,6 +24,12 @@ $('document').ready(function () {
         myOs = newOs;
         $(":radio").prop("checked", false); // clear previous os selections
         $("input[name="+myOs+"]:radio").prop("checked", true);
+
+        if (myOs == OS.userText) {
+            isTextInputMode = true;
+        } else {
+            isTextInputMode = false;
+        }
 
         updateToggleButtons(myOs);
     }
@@ -123,7 +131,52 @@ $('document').ready(function () {
         $('#output-location').html(prefixKeysHtml);
     });
 
+    $('body').keyup(function (e) {
+        if (isTextInputMode) {
+            // allow user to input any text
+            var userText = $('#user-text-input').val();
+            console.log("userText="+userText);
+            
+            // remove all spaces
+            userText = userText.replaceAll(" ", "")
+
+            // split by +
+            var splitKeys = userText.split("+")
+
+            var kbString = '';
+            var kbHtmlString = '';
+            for (var i=0; i<splitKeys.length; i++) {
+                kbString += splitKeys[i] + ' + ';
+                kbHtmlString += '<kbd>'+splitKeys[i]+'</kbd>+';
+            }
+
+            $('#output-location').html(kbHtmlString);
+            return;
+        }
+    });
+
     $('body').keydown(function (e) {
+        if (isTextInputMode) {
+            // // allow user to input any text
+            // var userText = $('#user-text-input').val();
+            // console.log("userText="+userText);
+            
+            // // remove all spaces
+            // userText = userText.replaceAll(" ", "")
+
+            // // split by +
+            // var splitKeys = userText.split("+")
+
+            // var kbString = '';
+            // var kbHtmlString = '';
+            // for (var i=0; i<splitKeys.length; i++) {
+            //     kbString += splitKeys[i] + ' + ';
+            //     kbHtmlString += '<kbd>'+splitKeys[i]+'</kbd>+';
+            // }
+
+            // $('#output-location').html(kbHtmlString);
+            return;
+        }
         const id = 'k'+e.keyCode;
         console.log('down = ' + keyMap[id]+ ", keycode = "+e.keyCode);
 
