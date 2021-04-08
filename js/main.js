@@ -20,14 +20,20 @@ $('document').ready(function () {
         setCustomOS(e.currentTarget.name);
     });
 
+    $('#user-text-input').hide();
+
     function setCustomOS(newOs) {
         myOs = newOs;
         $(":radio").prop("checked", false); // clear previous os selections
         $("input[name="+myOs+"]:radio").prop("checked", true);
 
         if (myOs == OS.userText) {
+            $('#kb-input').hide();
+            $('#user-text-input').show();
             isTextInputMode = true;
         } else {
+            $('#kb-input').show();
+            $('#user-text-input').hide();
             isTextInputMode = false;
         }
 
@@ -146,8 +152,30 @@ $('document').ready(function () {
             var kbString = '';
             var kbHtmlString = '';
             for (var i=0; i<splitKeys.length; i++) {
-                kbString += splitKeys[i] + ' + ';
-                kbHtmlString += '<kbd>'+splitKeys[i]+'</kbd>+';
+                if (splitKeys[i].indexOf(',') != -1) {
+                    var commaSplits = splitKeys[i].split(',');
+                    for(var j=0; j<commaSplits.length;j++) {
+                        kbString += commaSplits[j];
+                        kbHtmlString += '<kbd>'+commaSplits[j]+'</kbd>';
+
+                        if (j == commaSplits.length - 1) {
+                            // last one - no need to add +
+                        } else {
+                            kbString += ' , ';
+                            kbHtmlString += ',';
+                        }
+                    }
+                } else {
+                    kbString += splitKeys[i];
+                    kbHtmlString += '<kbd>'+splitKeys[i]+'</kbd>';
+    
+                    if (i == splitKeys.length - 1) {
+                        // last one - no need to add +
+                    } else {
+                        kbString += ' + ';
+                        kbHtmlString += '+';
+                    }
+                }
             }
 
             $('#output-location').html(kbHtmlString);
