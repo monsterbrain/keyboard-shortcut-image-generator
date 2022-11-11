@@ -1,10 +1,12 @@
 let OS = {windows:"windows", mac:"mac",other:"other", userText: "text"}
 var myOs = OS.windows; // default
 
-var prefixKeys = "";
-var prefixKeysHtml = "";
+var prefixKeyMap = new Map();
+var prefixKeyNameMap = new Map();
 
 var isTextInputMode = false;
+
+var generatedFilename = "";
 
 $('document').ready(function () {
     if(platform.os.family.indexOf("Win") != -1) {
@@ -87,7 +89,7 @@ $('document').ready(function () {
 
     $('#img-preview-div').hide();
 
-    $('#save-btn').click(function () {
+    $('#generate-img-btn').click(function () {
       var e = document.getElementById("output-location");
       var e_width = e.offsetWidth;
       var e_height = e.offsetHeight;
@@ -113,29 +115,84 @@ $('document').ready(function () {
         });
     });
 
+    $('#download-btn').click(function () {
+        console.log("save as btn clicked");
+        var img = $('#img-out-preview>img');
+        console.log(img);
+        saveBase64AsFile(img.attr('src'), generatedFilename.toLowerCase() +".png")
+    });
+
+    function saveBase64AsFile(base64, fileName) {
+        var link = document.createElement("a");
+        document.body.appendChild(link);
+        link.setAttribute("type", "hidden");
+        // link.href = "data:text/plain;base64," + base64;
+        link.href = base64;
+        link.download = fileName;
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    $('#ctrl-toggle').click((e)=>{
+        if ($(e.currentTarget).hasClass('keyboard-keydown')) {
+            $(e.currentTarget).removeClass('keyboard-keydown');
+            prefixKeyMap.delete('ctrl');
+            prefixKeyNameMap.delete('ctrl');
+        } else {
+            $(e.currentTarget).addClass('keyboard-keydown');
+            prefixKeyMap.set('ctrl', 'ctrl');
+            prefixKeyNameMap.set('ctrl', 'ctrl');
+        }
+        updateKeyPreviews();
+    });
+
+    $('#alt-toggle').click((e)=>{
+        if ($(e.currentTarget).hasClass('keyboard-keydown')) {
+            $(e.currentTarget).removeClass('keyboard-keydown');
+            prefixKeyMap.delete('alt');
+            prefixKeyNameMap.delete('alt');
+        } else {
+            $(e.currentTarget).addClass('keyboard-keydown');
+            // todo add to prefix
+            prefixKeyMap.set('alt', 'alt');
+            prefixKeyNameMap.set('alt', 'alt');
+        }
+        updateKeyPreviews();
+    });
+
     $('#meta-toggle').click((e)=>{
         if ($(e.currentTarget).hasClass('keyboard-keydown')) {
             $(e.currentTarget).removeClass('keyboard-keydown');
-            prefixKeys = '';
-            prefixKeysHtml = '';
+            prefixKeyMap.delete('meta');
+            prefixKeyNameMap.delete('meta');
         } else {
             $(e.currentTarget).addClass('keyboard-keydown');
 
             if (myOs == OS.mac) {
-                prefixKeys = '⌘ Cmd + ';
-                prefixKeysHtml = '<kbd>⌘ Cmd</kbd>+';
+                prefixKeyMap.set('meta', '⌘ Cmd');
+                prefixKeyNameMap.set('meta', 'cmd');
             } else if (myOs == OS.windows) {
-                prefixKeys = '⊞ Win + ';
-                prefixKeysHtml = '<kbd>⊞ Win</kbd>+';
+                prefixKeyMap.set('meta', '⊞ Win');
+                prefixKeyNameMap.set('meta', 'win');
             } else {
-                prefixKeys = 'Meta + ';
-                prefixKeysHtml = '<kbd>Meta</kbd>+';
+                prefixKeyMap.set('meta', 'Meta');
+                prefixKeyNameMap.set('meta', 'Meta');
             }
         }
 
+        updateKeyPreviews()
+    });
+
+    function updateKeyPreviews() {
+        let prefixKeysHtml = '';
+        let prefixKeys = '';
+        prefixKeyMap.forEach((value)=> {
+            prefixKeys += value +'+';
+            prefixKeysHtml += '<kbd>'+value+'</kbd>+';
+        });
         $('#kb-input').val(prefixKeys);
         $('#output-location').html(prefixKeysHtml);
-    });
+    }
 
     $('body').keyup(function (e) {
         if (isTextInputMode) {
@@ -208,34 +265,54 @@ $('document').ready(function () {
         const id = 'k'+e.keyCode;
         console.log('down = ' + keyMap[id]+ ", keycode = "+e.keyCode);
 
+        let prefixKeysHtml = '';
+        let prefixKeys = '';
+        prefixKeyMap.forEach((value)=> {
+            prefixKeys += value +'+';
+            prefixKeysHtml += '<kbd>'+value+'</kbd>+';
+        });
+
+        let prefixKeysName = '';
+        prefixKeyNameMap.forEach((key,value)=> {
+            prefixKeysName += value +'_';
+        });
+
+        generatedFilename = 'kbs_' + prefixKeysName;
+
         var kbString = prefixKeys + '';
         var kbHtmlString = prefixKeysHtml + '';
 
         if (e.ctrlKey) {
             kbString += 'Ctrl + ';
             kbHtmlString += '<kbd>Ctrl</kbd>+';
+            generatedFilename += 'ctrl_';
         }
 
         if(e.altKey){
             kbString += 'Alt + ';
             kbHtmlString += '<kbd>Alt</kbd>+';
+            generatedFilename += 'alt_';
         }
 
         if (e.shiftKey) {
             kbString += 'Shift + ';
             kbHtmlString += '<kbd>Shift</kbd>+';
+            generatedFilename += 'shift_';
         }
 
         if (e.metaKey) {
             if (myOs == OS.mac) {
                 kbString += '⌘ Cmd + ';
                 kbHtmlString += '<kbd>⌘ Cmd</kbd>+';
+                generatedFilename += 'cmd_';
             } else if (myOs == OS.windows) {
                 kbString += '⊞ Win + ';
                 kbHtmlString += '<kbd>⊞ Win</kbd>+';
+                generatedFilename += 'win_';
             } else {
                 kbString += 'Meta + ';
                 kbHtmlString += '<kbd>Meta</kbd>+';
+                generatedFilename += 'meta_';
             }
         }
 
@@ -243,9 +320,11 @@ $('document').ready(function () {
             kbString += e.key;
             console.log(e.key);
             if (keyMap[id] != undefined) {
-                kbHtmlString += '<kbd>' + keyMap[id] + '</kbd>';    
+                kbHtmlString += '<kbd>' + keyMap[id] + '</kbd>';
+                generatedFilename += ''+keyMap[id];
             } else {
                 kbHtmlString += '<kbd>' + e.key + '</kbd>';
+                generatedFilename += ''+e.key;
             }
         }
 

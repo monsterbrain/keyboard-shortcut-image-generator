@@ -1,4 +1,4 @@
-# keyboard shortcut image generator (v0.2)
+# keyboard shortcut image generator (v0.3)
 
 ## [View Website](https://monsterbrain.github.io/keyboard-shortcut-image-generator)
 
@@ -9,6 +9,11 @@
  - add Multiple Button Styles (todo)
  - options to add Spacebar (todo)
  - able to copy css and markup (todo)
+
+## update v0.3
+ - added download button
+ - download png file with file format kbs_ctrl_x.png
+ - added control, alt button similar to windows button
 
 ## update v0.2
  - image generated is shown in same page

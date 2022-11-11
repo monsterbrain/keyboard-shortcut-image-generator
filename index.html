@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Keyboard Shortcut Image Generator v0.1</title>
+		<title>Keyboard Shortcut Image Generator v0.3</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css"> -->
 		<link rel="stylesheet" href="css/spectre.min.css" />
@@ -69,7 +69,7 @@
 			<div class="grid-hero container grid-lg text-center" id="overview">
 				<div class="docs-brand">
 					<br>
-					<h1>Key-Short-img</h1>
+					<h1>KeyboShot</h1>
 					<h2>
 						A <u>Keyboard</u>-<u>Shortcut</u>-<u>Image</u> Generator
 					</h2>
@@ -93,13 +93,15 @@
 					  </form>
 					<p>
 						<label class="form-radio form-inline"></label>
+							<icon id="ctrl-toggle" class="keyboard-key ctrl"></icon>
 							<icon id="meta-toggle" class="keyboard-key cmd"></icon>
+							<icon id="alt-toggle" class="keyboard-key alt"></icon>
 						</label>
 						<input class="form-input form-inline" type="text" id="kb-input" placeholder="Press Any Keyboard Shortcut" style="width: 50%; margin: auto;" />
 						<input class="form-input form-inline" type="text" id="user-text-input" placeholder="Type Any Keyboard Shortcut" style="width: 50%; margin: auto;" />
 					</p>
 					<div >
-						<h2>Image Output</h2>
+						<!-- <h2>Image Output</h2> -->
 						<div id="container-output-location">
 							<p id="output-location">
 								<kbd>Ctrl</kbd>+
@@ -110,11 +112,16 @@
 					</div>
 					<br/>
 					<div>
-						<button class="btn btn-primary btn-lg" type="button" id="save-btn">Generate image</button>
+						<button class="btn btn-primary btn-lg" type="button" id="generate-img-btn">
+							<i class="icon icon-check"></i> Generate image
+						</button>
+						<button class="btn btn-primary btn-lg" type="button" id="download-btn">
+							<i class="icon icon-download"></i> Download image
+						</button>
 					</div>
 
 					<div id="img-preview-div">
-						<h2>Generated Image - (<b>Right click -> Save image as</b> to save the image)</h2>
+						<h2><i class="icon icon-photo"></i> Generated Image - (<b>Download -> download image</b> as png)</h2>
 						<div id="img-out-preview">
 						</div>
 					</div>
