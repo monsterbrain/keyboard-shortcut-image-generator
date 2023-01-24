@@ -201,7 +201,7 @@ $('document').ready(function () {
             console.log("userText="+userText);
             
             // remove all spaces
-            userText = userText.replaceAll(" ", "")
+            // userText = userText.replaceAll(" ", "")
 
             // split by +
             var splitKeys = userText.split("+")
