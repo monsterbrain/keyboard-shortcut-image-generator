@@ -133,6 +133,20 @@ $('document').ready(function () {
         document.body.removeChild(link);
     }
 
+    // Shift key toggle
+    $('#shift-toggle').click((e)=>{
+        if ($(e.currentTarget).hasClass('keyboard-keydown')) {
+            $(e.currentTarget).removeClass('keyboard-keydown');
+            prefixKeyMap.delete('shift');
+            prefixKeyNameMap.delete('shift');
+        } else {
+            $(e.currentTarget).addClass('keyboard-keydown');
+            prefixKeyMap.set('shift', 'shift');
+            prefixKeyNameMap.set('shift', 'shift');
+        }
+        updateKeyPreviews();
+    });
+
     $('#ctrl-toggle').click((e)=>{
         if ($(e.currentTarget).hasClass('keyboard-keydown')) {
             $(e.currentTarget).removeClass('keyboard-keydown');
