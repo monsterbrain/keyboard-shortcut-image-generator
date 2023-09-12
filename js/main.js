@@ -44,16 +44,31 @@ $('document').ready(function () {
 
     function updateToggleButtons(newOs) {
         let $metaKey = $('#meta-toggle');
+        let $controlKey = $('#ctrl-toggle');
+        let $altKey = $('#alt-toggle');
+
         $metaKey.removeClass('cmd');
         $metaKey.removeClass('win');
         $metaKey.removeClass('meta');
 
+        $controlKey.removeClass('ctrl');
+        $controlKey.removeClass('control');
+
+        $altKey.removeClass('alt');
+        $altKey.removeClass('macOption');
+
         if (myOs == OS.mac) {
             $metaKey.addClass('cmd');
+            $controlKey.addClass('control')
+            $altKey.addClass('macOption')
         } else if (myOs == OS.windows) {
             $metaKey.addClass('win');
+            $controlKey.addClass('ctrl')
+            $altKey.addClass('alt')
         } else {
             $metaKey.addClass('meta');
+            $controlKey.addClass('ctrl')
+            $altKey.addClass('alt')
         }
     }
 
@@ -154,8 +169,16 @@ $('document').ready(function () {
             prefixKeyNameMap.delete('ctrl');
         } else {
             $(e.currentTarget).addClass('keyboard-keydown');
-            prefixKeyMap.set('ctrl', 'ctrl');
-            prefixKeyNameMap.set('ctrl', 'ctrl');
+            if (myOs == OS.mac) {
+                prefixKeyMap.set('ctrl', '⌃ control');
+                prefixKeyNameMap.set('ctrl', 'control');
+            } else if (myOs == OS.windows) {
+                prefixKeyMap.set('ctrl', 'ctrl');
+                prefixKeyNameMap.set('ctrl', 'ctrl');
+            }   else {
+                prefixKeyMap.set('ctrl', 'ctrl');
+                prefixKeyNameMap.set('ctrl', 'ctrl');
+            }
         }
         updateKeyPreviews();
     });
@@ -165,11 +188,22 @@ $('document').ready(function () {
             $(e.currentTarget).removeClass('keyboard-keydown');
             prefixKeyMap.delete('alt');
             prefixKeyNameMap.delete('alt');
+            
+            prefixKeyMap.delete('option');
+            prefixKeyNameMap.delete('option');
         } else {
             $(e.currentTarget).addClass('keyboard-keydown');
             // todo add to prefix
-            prefixKeyMap.set('alt', 'alt');
-            prefixKeyNameMap.set('alt', 'alt');
+            if (myOs == OS.mac) {
+                prefixKeyMap.set('option', '⌥ option');
+                prefixKeyNameMap.set('option', 'option');
+            } else if (myOs == OS.windows) {
+                prefixKeyMap.set('alt', 'alt');
+                prefixKeyNameMap.set('alt', 'alt');
+            }   else {
+                prefixKeyMap.set('alt', 'alt');
+                prefixKeyNameMap.set('alt', 'alt');
+            }
         }
         updateKeyPreviews();
     });

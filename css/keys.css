@@ -634,6 +634,25 @@
   font-size: 10px;
   content: "ctrl";
 }
+
+/* Mac Control Key */
+.keyboard-key.control::before {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 10px;
+  content: "⌃ control";
+}
+
+/* Mac Option Key */
+.keyboard-key.macOption::before {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 10px;
+  content: "⌥ option";
+}
+
 .keyboard-key.delete::before {
   position: absolute;
   bottom: 5px;
@@ -669,7 +688,7 @@
   bottom: 5px;
   left: 5px;
   font-size: 10px;
-  content: "shift";
+  content: "⇧ shift";
 }
 .keyboard-key.space {
   width: 226px;
