@@ -595,7 +595,7 @@
   bottom: 5px;
   left: 5px;
   font-size: 10px;
-  content: "alt";
+  content: "Alt";
 }
 .keyboard-key.cmd {
   width: 72px;
@@ -605,7 +605,7 @@
   bottom: 5px;
   left: 5px;
   font-size: 10px;
-  content: "⌘ cmd";
+  content: "⌘ Cmd";
 }
 .keyboard-key.win {
   width: 56px;
@@ -615,7 +615,7 @@
   bottom: 5px;
   left: 5px;
   font-size: 10px;
-  content: "⊞ win";
+  content: "⊞ Win";
 }
 .keyboard-key.meta {
   width: 56px;
@@ -632,7 +632,7 @@
   bottom: 5px;
   left: 5px;
   font-size: 10px;
-  content: "ctrl";
+  content: "Ctrl";
 }
 
 /* Mac Control Key */
@@ -641,7 +641,7 @@
   bottom: 5px;
   left: 5px;
   font-size: 10px;
-  content: "⌃ control";
+  content: "⌃ Control";
 }
 
 /* Mac Option Key */
@@ -650,7 +650,7 @@
   bottom: 5px;
   left: 5px;
   font-size: 10px;
-  content: "⌥ option";
+  content: "⌥ Option";
 }
 
 .keyboard-key.delete::before {
@@ -688,7 +688,7 @@
   bottom: 5px;
   left: 5px;
   font-size: 10px;
-  content: "⇧ shift";
+  content: "⇧ Shift";
 }
 .keyboard-key.space {
   width: 226px;

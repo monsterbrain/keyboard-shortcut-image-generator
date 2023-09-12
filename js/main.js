@@ -156,7 +156,7 @@ $('document').ready(function () {
             prefixKeyNameMap.delete('shift');
         } else {
             $(e.currentTarget).addClass('keyboard-keydown');
-            prefixKeyMap.set('shift', 'shift');
+            prefixKeyMap.set('shift', 'Shift');
             prefixKeyNameMap.set('shift', 'shift');
         }
         updateKeyPreviews();
@@ -170,10 +170,10 @@ $('document').ready(function () {
         } else {
             $(e.currentTarget).addClass('keyboard-keydown');
             if (myOs == OS.mac) {
-                prefixKeyMap.set('ctrl', '⌃ control');
+                prefixKeyMap.set('ctrl', '⌃ Control');
                 prefixKeyNameMap.set('ctrl', 'control');
             } else if (myOs == OS.windows) {
-                prefixKeyMap.set('ctrl', 'ctrl');
+                prefixKeyMap.set('ctrl', 'Ctrl');
                 prefixKeyNameMap.set('ctrl', 'ctrl');
             }   else {
                 prefixKeyMap.set('ctrl', 'ctrl');
@@ -195,10 +195,10 @@ $('document').ready(function () {
             $(e.currentTarget).addClass('keyboard-keydown');
             // todo add to prefix
             if (myOs == OS.mac) {
-                prefixKeyMap.set('option', '⌥ option');
+                prefixKeyMap.set('option', '⌥ Option');
                 prefixKeyNameMap.set('option', 'option');
             } else if (myOs == OS.windows) {
-                prefixKeyMap.set('alt', 'alt');
+                prefixKeyMap.set('alt', 'Alt');
                 prefixKeyNameMap.set('alt', 'alt');
             }   else {
                 prefixKeyMap.set('alt', 'alt');
@@ -347,9 +347,6 @@ $('document').ready(function () {
         }
 
         if(e.altKey){
-            // kbString += 'Alt + ';
-            // kbHtmlString += '<kbd>Alt</kbd>+';
-            // generatedFilename += 'alt_';
             if (myOs == OS.mac) {
                 kbString += '⌥ Option + ';
                 kbHtmlString += '<kbd>⌥ Option</kbd>+';
