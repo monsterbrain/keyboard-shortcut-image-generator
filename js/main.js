@@ -331,15 +331,38 @@ $('document').ready(function () {
         var kbHtmlString = prefixKeysHtml + '';
 
         if (e.ctrlKey) {
-            kbString += 'Ctrl + ';
-            kbHtmlString += '<kbd>Ctrl</kbd>+';
-            generatedFilename += 'ctrl_';
+            if (myOs == OS.mac) {
+                kbString += '⌃ Control + ';
+                kbHtmlString += '<kbd>⌃ Control</kbd>+';
+                generatedFilename += 'control_';
+            } else if (myOs == OS.windows) {
+                kbString += 'Ctrl + ';
+                kbHtmlString += '<kbd>Ctrl</kbd>+';
+                generatedFilename += 'ctrl_';
+            } else {
+                kbString += 'Ctrl + ';
+                kbHtmlString += '<kbd>Ctrl</kbd>+';
+                generatedFilename += 'ctrl_';
+            }
         }
 
         if(e.altKey){
-            kbString += 'Alt + ';
-            kbHtmlString += '<kbd>Alt</kbd>+';
-            generatedFilename += 'alt_';
+            // kbString += 'Alt + ';
+            // kbHtmlString += '<kbd>Alt</kbd>+';
+            // generatedFilename += 'alt_';
+            if (myOs == OS.mac) {
+                kbString += '⌥ Option + ';
+                kbHtmlString += '<kbd>⌥ Option</kbd>+';
+                generatedFilename += 'option_';
+            } else if (myOs == OS.windows) {
+                kbString += 'Alt + ';
+                kbHtmlString += '<kbd>Alt</kbd>+';
+                generatedFilename += 'alt_';
+            } else {
+                kbString += 'Alt + ';
+                kbHtmlString += '<kbd>Alt</kbd>+';
+                generatedFilename += 'alt_';
+            }
         }
 
         if (e.shiftKey) {
