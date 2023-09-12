@@ -605,7 +605,7 @@
   bottom: 5px;
   left: 5px;
   font-size: 10px;
-  content: "cmd";
+  content: "⌘ cmd";
 }
 .keyboard-key.win {
   width: 56px;
@@ -615,7 +615,7 @@
   bottom: 5px;
   left: 5px;
   font-size: 10px;
-  content: "win";
+  content: "⊞ win";
 }
 .keyboard-key.meta {
   width: 56px;
