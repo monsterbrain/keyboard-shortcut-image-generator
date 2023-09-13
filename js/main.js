@@ -44,16 +44,31 @@ $('document').ready(function () {
 
     function updateToggleButtons(newOs) {
         let $metaKey = $('#meta-toggle');
+        let $controlKey = $('#ctrl-toggle');
+        let $altKey = $('#alt-toggle');
+
         $metaKey.removeClass('cmd');
         $metaKey.removeClass('win');
         $metaKey.removeClass('meta');
 
+        $controlKey.removeClass('ctrl');
+        $controlKey.removeClass('control');
+
+        $altKey.removeClass('alt');
+        $altKey.removeClass('macOption');
+
         if (myOs == OS.mac) {
             $metaKey.addClass('cmd');
+            $controlKey.addClass('control')
+            $altKey.addClass('macOption')
         } else if (myOs == OS.windows) {
             $metaKey.addClass('win');
+            $controlKey.addClass('ctrl')
+            $altKey.addClass('alt')
         } else {
             $metaKey.addClass('meta');
+            $controlKey.addClass('ctrl')
+            $altKey.addClass('alt')
         }
     }
 
@@ -133,6 +148,20 @@ $('document').ready(function () {
         document.body.removeChild(link);
     }
 
+    // Shift key toggle
+    $('#shift-toggle').click((e)=>{
+        if ($(e.currentTarget).hasClass('keyboard-keydown')) {
+            $(e.currentTarget).removeClass('keyboard-keydown');
+            prefixKeyMap.delete('shift');
+            prefixKeyNameMap.delete('shift');
+        } else {
+            $(e.currentTarget).addClass('keyboard-keydown');
+            prefixKeyMap.set('shift', 'Shift');
+            prefixKeyNameMap.set('shift', 'shift');
+        }
+        updateKeyPreviews();
+    });
+
     $('#ctrl-toggle').click((e)=>{
         if ($(e.currentTarget).hasClass('keyboard-keydown')) {
             $(e.currentTarget).removeClass('keyboard-keydown');
@@ -140,8 +169,16 @@ $('document').ready(function () {
             prefixKeyNameMap.delete('ctrl');
         } else {
             $(e.currentTarget).addClass('keyboard-keydown');
-            prefixKeyMap.set('ctrl', 'ctrl');
-            prefixKeyNameMap.set('ctrl', 'ctrl');
+            if (myOs == OS.mac) {
+                prefixKeyMap.set('ctrl', '⌃ Control');
+                prefixKeyNameMap.set('ctrl', 'control');
+            } else if (myOs == OS.windows) {
+                prefixKeyMap.set('ctrl', 'Ctrl');
+                prefixKeyNameMap.set('ctrl', 'ctrl');
+            }   else {
+                prefixKeyMap.set('ctrl', 'ctrl');
+                prefixKeyNameMap.set('ctrl', 'ctrl');
+            }
         }
         updateKeyPreviews();
     });
@@ -151,11 +188,22 @@ $('document').ready(function () {
             $(e.currentTarget).removeClass('keyboard-keydown');
             prefixKeyMap.delete('alt');
             prefixKeyNameMap.delete('alt');
+            
+            prefixKeyMap.delete('option');
+            prefixKeyNameMap.delete('option');
         } else {
             $(e.currentTarget).addClass('keyboard-keydown');
             // todo add to prefix
-            prefixKeyMap.set('alt', 'alt');
-            prefixKeyNameMap.set('alt', 'alt');
+            if (myOs == OS.mac) {
+                prefixKeyMap.set('option', '⌥ Option');
+                prefixKeyNameMap.set('option', 'option');
+            } else if (myOs == OS.windows) {
+                prefixKeyMap.set('alt', 'Alt');
+                prefixKeyNameMap.set('alt', 'alt');
+            }   else {
+                prefixKeyMap.set('alt', 'alt');
+                prefixKeyNameMap.set('alt', 'alt');
+            }
         }
         updateKeyPreviews();
     });
@@ -283,15 +331,35 @@ $('document').ready(function () {
         var kbHtmlString = prefixKeysHtml + '';
 
         if (e.ctrlKey) {
-            kbString += 'Ctrl + ';
-            kbHtmlString += '<kbd>Ctrl</kbd>+';
-            generatedFilename += 'ctrl_';
+            if (myOs == OS.mac) {
+                kbString += '⌃ Control + ';
+                kbHtmlString += '<kbd>⌃ Control</kbd>+';
+                generatedFilename += 'control_';
+            } else if (myOs == OS.windows) {
+                kbString += 'Ctrl + ';
+                kbHtmlString += '<kbd>Ctrl</kbd>+';
+                generatedFilename += 'ctrl_';
+            } else {
+                kbString += 'Ctrl + ';
+                kbHtmlString += '<kbd>Ctrl</kbd>+';
+                generatedFilename += 'ctrl_';
+            }
         }
 
         if(e.altKey){
-            kbString += 'Alt + ';
-            kbHtmlString += '<kbd>Alt</kbd>+';
-            generatedFilename += 'alt_';
+            if (myOs == OS.mac) {
+                kbString += '⌥ Option + ';
+                kbHtmlString += '<kbd>⌥ Option</kbd>+';
+                generatedFilename += 'option_';
+            } else if (myOs == OS.windows) {
+                kbString += 'Alt + ';
+                kbHtmlString += '<kbd>Alt</kbd>+';
+                generatedFilename += 'alt_';
+            } else {
+                kbString += 'Alt + ';
+                kbHtmlString += '<kbd>Alt</kbd>+';
+                generatedFilename += 'alt_';
+            }
         }
 
         if (e.shiftKey) {
