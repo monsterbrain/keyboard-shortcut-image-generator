@@ -1,4 +1,4 @@
-# keyboard shortcut image generator (v0.3)
+# keyboard shortcut image generator (v0.4)
 
 ## [View Website](https://monsterbrain.github.io/keyboard-shortcut-image-generator)
 
@@ -10,6 +10,8 @@
  - options to add Spacebar (todo)
  - able to copy css and markup (todo)
 
+## update v0.4
+ - added icons for mac shortcuts (like options, cmd etc) 
 ## update v0.3
  - added download button
  - download png file with file format kbs_ctrl_x.png
@@ -22,6 +24,7 @@
 
 ## contributors
  - <a href="https://github.com/alexis-">Alex Incognito</a>
+ - <a href="https://github.com/GustavoA95">Gustavo Alberto</a>
  - uses keyboard keys-css -https://github.com/alanclarke/keyboard-keys
  
  ## Contributions are welcome
