@@ -11,7 +11,7 @@
  - able to copy css and markup (todo)
 
 ## update v0.4
- - added icons for mac shortcuts (like options, cmd etc) 
+ - added icons for mac shortcuts (like options, cmd etc) Thanks <a href="https://github.com/GustavoA95">Gustavo Alberto</a>
 ## update v0.3
  - added download button
  - download png file with file format kbs_ctrl_x.png
