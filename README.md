@@ -1,4 +1,4 @@
-# keyboard shortcut image generator (v0.4)
+# keyboard shortcut image generator (v0.5)
 
 ## [View Website](https://monsterbrain.github.io/keyboard-shortcut-image-generator)
 
@@ -6,10 +6,16 @@
 
 ## Features
  - Image generation
+ - Keystrokes converted to keys
+ - Output image size selection
  - add Multiple Button Styles (todo)
  - options to add Spacebar (todo)
  - able to copy css and markup (todo)
 
+## update v0.5
+ - improved image output quality using modified version of html2canvas [thanks to eKoopman's <a href="https://github.com/eKoopmans/html2canvas">fork</a>]
+ - image output size can be selected [based on size factor of image generated though]
+ 
 ## update v0.4
  - added icons for mac shortcuts (like options, cmd etc) Thanks <a href="https://github.com/GustavoA95">Gustavo Alberto</a>
 ## update v0.3
@@ -28,3 +34,7 @@
  - uses keyboard keys-css -https://github.com/alanclarke/keyboard-keys
  
  ## Contributions are welcome
+ - Mainly regarding better coding style (it's getting messier every day i guess)
+ - Multiple key styles
+ - html markup copy
+ - Full keyboard visualization of Keyboard shortcuts (i am planning to)
