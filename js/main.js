@@ -17,6 +17,21 @@ $('document').ready(function () {
         setCustomOS(OS.other);
     }
 
+    $('.close-btn').click(function(){
+        console.log('close btn click');
+        $('#modal-revision-history').removeClass('active');
+    });
+    $('#revision-history').click(function () {
+        $('#modal-revision-history').addClass('active');
+    });
+
+    tippy('#resize-checkbox-label', {
+        placement: 'bottom',
+        content: 'Resize from a larger image to improve quality',
+      });
+
+      // alert($("#resize-checkbox").prop('checked'));
+
     // on OS selection radio button click
     $("input:radio").click((e)=>{
         setCustomOS(e.currentTarget.name);
@@ -104,6 +119,11 @@ $('document').ready(function () {
 
     $('#img-preview-div').hide();
 
+    var imgSizeSelector = document.getElementById("img-out-size-selector");
+    imgSizeSelector.addEventListener("change", (e)=> {
+        // alert(e.target.selectedIndex);
+    });
+
     $('#generate-img-btn').click(function () {
       var e = document.getElementById("output-location");
       var e_width = e.offsetWidth;
@@ -111,24 +131,88 @@ $('document').ready(function () {
       var e_x_offset = window.scrollX + e.getBoundingClientRect().left;
       var e_y_offset = window.scrollY + e.getBoundingClientRect().top;
 
+      var isResizeFromLargeImage = $("#resize-checkbox").prop('checked');
+      console.log("isResizeFromLargeImage="+isResizeFromLargeImage);
+      var genDpi = isResizeFromLargeImage? 256: 96;
       html2canvas(e, {
+        dpi: genDpi,
         scale: 1,
         backgroundColor: null,
         width: e_width,
         height: e_height,
         x: e_x_offset,
-        y: e_y_offset }).then(canvas => {
+        y: e_y_offset
+     }).then(canvas => {
             //document.body.appendChild(canvas)
             $('#img-preview-div').show();
             var base64image = canvas.toDataURL("image/png");
-            let $imgDiv = $('<img src="' + base64image + '"/>');
-            $('#img-out-preview').empty();
-            $('#img-out-preview').append($imgDiv);
+
+            if (isResizeFromLargeImage) {
+                let img = new Image();
+                img.src = base64image;
+                img.onload = () => {
+                    // 0.5x, 1x, 0.75x, 0.35x, 0.25x, 0.15x
+                    let genImgWidth = img.width;
+                    let img_sizes_in_width = [genImgWidth/2, genImgWidth, genImgWidth*0.75, genImgWidth*0.35, genImgWidth*0.25, genImgWidth*0.15];
+                    var imgSizeSelector = document.getElementById("img-out-size-selector");
+                    var resizeWidth = img_sizes_in_width[imgSizeSelector.selectedIndex];
+
+                    console.log("resize width="+resizeWidth);
+
+                    resizeImage(base64image, resizeWidth);
+                }
+                
+            } else {
+                let $imgDiv = $('<img src="' + base64image + '"/>');
+                $('#img-out-preview').empty();
+                $('#img-out-preview').append($imgDiv);
+
+                $imgDiv[0].onload = ()=>{
+                    $("#gen-img-size-label").text("image dimensions = "+$imgDiv[0].width+'px, '+$imgDiv[0].height+'px');
+                }
+            }
+
+            // resizeImage(base64image, 298);
             // var win = window.open('', "_blank");
             // win.document.write('<img src="' + base64image + '"/>');
             // win.document.close();
         });
     });
+
+    function resizeImage(base64image, width = 256) {
+        img = new Image();
+        img.src = base64image;
+
+        img.onload = () => {
+
+            console.log('img w,h'+img.width+','+img.height);
+            var height = width * (img.height / img.width);
+            console.log(height+"h");
+    
+            // Dynamically create a canvas element
+            var canvas = document.createElement("canvas");
+
+            // var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+
+            canvas.width = width;
+            canvas.height = height;
+
+            // Actual resizing
+            ctx.drawImage(img, 0, 0, width, height);
+
+            var base64image = canvas.toDataURL("image/png");
+            let $imgDiv = $('<img src="' + base64image + '"/>');
+            $('#img-out-preview').empty();
+            $('#img-out-preview').append($imgDiv);
+
+            $imgDiv[0].onload = ()=>{
+                $("#gen-img-size-label").text("image dimensions = "+$imgDiv[0].width+'px, '+$imgDiv[0].height+'px');
+            }
+    
+            // Now use target canvas, to hold the final image, and output image from it
+        } // End of the img.onLoad
+    }
 
     $('#download-btn').click(function () {
         console.log("save as btn clicked");

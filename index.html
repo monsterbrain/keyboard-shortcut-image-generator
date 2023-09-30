@@ -10,9 +10,14 @@
 		<link rel="stylesheet" href="css/spectre-exp.min.css" />
 		<link rel="stylesheet" href="css/spectre-icons.min.css" />
 		<link rel="stylesheet" href="css/keys.css" />
+
+		<!-- Production -->
+		<script src="https://unpkg.com/@popperjs/core@2"></script>
+		<script src="https://unpkg.com/tippy.js@6"></script>
+
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="js/platform1.3.5.js"></script>
-		<script src="js/html2canvas.min.js"></script>
+		<script src="js/html2canvas.ekoopman.js"></script>
 		<script src="js/main.js"></script>
 		<style>
         .grid-hero h2 {
@@ -69,9 +74,14 @@
 			<div class="grid-hero container grid-lg text-center" id="overview">
 				<div class="docs-brand">
 					<br>
-					<h1>KeyboShot</h1>
+					<h1>KeyboShot / キーボーショート</h1>
 					<h2>
-						A <u>Keyboard</u>-<u>Shortcut</u>-<u>Image</u> Generator
+						A <u>Keyboard</u>-<u>Shortcut</u>-<u>Image</u> Generator. v0.5 ( <span href="" id="revision-history" class="label label-rounded label-primary">changeLog</span> )
+						<br/>
+						キーボード ショートカット イメージを生成する
+					</h2>
+					<h2>
+						
 					</h2>
 					
 					<form>
@@ -112,19 +122,51 @@
 						</div>
 					</div>
 					<br/>
-					<div>
-						<button class="btn btn-primary btn-lg" type="button" id="generate-img-btn">
-							<i class="icon icon-check"></i> Generate image
-						</button>
-						<button class="btn btn-primary btn-lg" type="button" id="download-btn">
-							<i class="icon icon-download"></i> Download image
-						</button>
+					<div class="container">
+						<div class="columns">
+							<div class="column col-3"></div>
+							<div class="column col-3 col-mx auto">
+								<button class="btn btn-primary btn-lg" type="button" id="generate-img-btn">
+									<i class="icon icon-check"></i> Generate image
+								</button>
+
+								<div class="form-group">
+									<label id="resize-checkbox-label" class="form-switch">
+									  <input id="resize-checkbox" type="checkbox" checked><i class="form-icon"></i> High Quality
+									</label>
+								</div>
+							</div>
+							
+							<div class="column col-4 col-mx auto">
+								<button class="btn btn-primary btn-lg" type="button" id="download-btn">
+									<i class="icon icon-download"></i> Download image
+								</button>
+								<div>
+									Resize to &nbsp;<select id="img-out-size-selector">
+										<option value="1">Default (0.5x)</option>
+										<option value="2">Actual (1x)</option>
+										<option value="3">Medium (0.75x)</option>
+										<option value="4">Small (0.35x)</option>
+										<option value="5">Very Small (0.25x)</option>
+										<option value="6">Too Small (0.10x)</option>
+									</select>
+								</div>
+								
+							</div>
+							<div class="column col-2"></div>
+						</div>
 					</div>
 
 					<div id="img-preview-div">
 						<h2><i class="icon icon-photo"></i> Generated Image - (<b>Download -> download image</b> as png)</h2>
+						<p id="gen-img-size-label">w,h = [0px, 0px]</p>
 						<div id="img-out-preview">
 						</div>
+						<!--
+							used for testing resized and non resized images 
+							<div id="img-out-preview-resized">
+						</div> -->
+						</canvas>
 					</div>
 
 					<br>
@@ -136,7 +178,9 @@
 				
 					
 					<p class="text-gray">
-						Created by <a href="https://github.com/monsterbrain">Monster Brain</a> / <a href="https://github.com/alexis-">Alex Incognito</a> -- Last Updated: 28-08-2020
+						Created by <a href="https://github.com/monsterbrain">Monster Brain</a> / <a href="https://github.com/alexis-">Alex Incognito</a> [contrib] <a href="https://github.com/GustavoA95">Gustavo</a>
+						<br>uses [<a href="https://html2canvas.hertzen.com/">html2canvas</a>] for converting html elements to image
+						<br> -- Last Updated: 30-09-2023
 					</p>
 
 					<br/>
@@ -146,5 +190,38 @@
 						</a>
 					</div>
 			</div>
+
+			<div class="modal" id="modal-revision-history">
+				<!-- <a href="#close" class="modal-overlay close-btn" aria-label="Close"></a> -->
+				<div class="modal-container">
+				  <div class="modal-header">
+					<a href="#close" class="btn btn-clear float-right close-btn" aria-label="Close"></a>
+					<div class="modal-title h5">Revision History</div>
+				  </div>
+				  <div class="modal-body">
+					<div class="content">
+					  <!-- content here -->
+					  <h3>update v0.4</h3>
+						<p>- added icons for mac shortcuts (like options, cmd etc) Thanks <a href="https://github.com/GustavoA95">Gustavo Alberto</a></p>
+						<h3>update v0.3</h3>
+						<p>
+							- added download button <br>
+							- download png file with file format kbs_ctrl_x.png <br>
+							- added control, alt button similar to windows button
+						</p>
+
+						<h3>update v0.2</h3>
+						<p>
+							- image generated is shown in same page <br>
+							- toggle meta/windows/cmd key added <br>
+							- space bar key added
+						</p>
+					</div>
+				  </div>
+				  <div class="modal-footer">
+					<button class="btn btn-primary close-btn">close</button>
+				  </div>
+				</div>
+			  </div>
 		</body>
 	</html>
