@@ -4,6 +4,13 @@
 
 <img src="demo_kb_preview.gif" width="500">
 
+## Addon - Keyboard Keys Highlighter [Link](https://monsterbrain.github.io/keyboard-shortcut-previewer/)
+<img src="https://github.com/monsterbrain/keyboard-shortcut-image-generator/assets/10105094/4d3e4ba5-59bd-46a8-8577-ee18d3f8a8ab" width="480">
+
+This is an addon tool to generate KEYBOARD image with shortcut keys highlighted. 
+Check it out and let me know if you have any suggestions.
+## [Check it out here](https://monsterbrain.github.io/keyboard-shortcut-previewer/)
+
 ## Features
  - Image generation
  - Keystrokes converted to keys
