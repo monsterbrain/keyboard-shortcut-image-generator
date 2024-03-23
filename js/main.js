@@ -9,9 +9,10 @@ var isTextInputMode = false;
 var generatedFilename = "";
 
 $('document').ready(function () {
+    console.log("platform = "+platform.os.family)
     if(platform.os.family.indexOf("Win") != -1) {
         setCustomOS(OS.windows);
-    } else if(platform.os.family.indexOf("Mac") != -1) {
+    } else if(platform.os.family.indexOf("Mac") != -1 || platform.os.family.indexOf("OS X") != -1) {
         setCustomOS(OS.mac);
     } else {
         setCustomOS(OS.other);
