@@ -8,6 +8,15 @@ var isTextInputMode = false;
 
 var generatedFilename = "";
 
+var showSymbolsOnly = false;
+
+const keys = {
+    ctrl: 'ctrlKey',
+    alt: 'altKey',
+    shift: 'shiftKey',
+    win: 'winKey'
+}
+
 $('document').ready(function () {
     console.log("platform = "+platform.os.family)
     if(platform.os.family.indexOf("Win") != -1) {
@@ -29,6 +38,17 @@ $('document').ready(function () {
     tippy('#resize-checkbox-label', {
         placement: 'bottom',
         content: 'Resize from a larger image to improve quality',
+      });
+
+      var symbolsOnlyCheckbox = document.querySelector("#only-symbols-checkbox");
+
+      symbolsOnlyCheckbox.addEventListener("change", function () {
+        showSymbolsOnly = this.checked;
+        if (this.checked) {
+          console.log("Symbols is checked..");
+        } else {
+          console.log("Symbols is not checked..");
+        }
       });
 
       // alert($("#resize-checkbox").prop('checked'));
@@ -240,8 +260,9 @@ $('document').ready(function () {
             prefixKeyMap.delete('shift');
             prefixKeyNameMap.delete('shift');
         } else {
+            var keyText = getKeyTextFor(keys.shift, myOs);
             $(e.currentTarget).addClass('keyboard-keydown');
-            prefixKeyMap.set('shift', 'Shift');
+            prefixKeyMap.set('shift', keyText);
             prefixKeyNameMap.set('shift', 'shift');
         }
         updateKeyPreviews();
@@ -254,14 +275,13 @@ $('document').ready(function () {
             prefixKeyNameMap.delete('ctrl');
         } else {
             $(e.currentTarget).addClass('keyboard-keydown');
+            var keyText = getKeyTextFor(keys.ctrl, myOs);
+            prefixKeyMap.set('ctrl', keyText);
             if (myOs == OS.mac) {
-                prefixKeyMap.set('ctrl', '⌃ Control');
                 prefixKeyNameMap.set('ctrl', 'control');
             } else if (myOs == OS.windows) {
-                prefixKeyMap.set('ctrl', 'Ctrl');
                 prefixKeyNameMap.set('ctrl', 'ctrl');
             }   else {
-                prefixKeyMap.set('ctrl', 'ctrl');
                 prefixKeyNameMap.set('ctrl', 'ctrl');
             }
         }
@@ -278,15 +298,14 @@ $('document').ready(function () {
             prefixKeyNameMap.delete('option');
         } else {
             $(e.currentTarget).addClass('keyboard-keydown');
-            // todo add to prefix
+            var keyText = getKeyTextFor(keys.alt, myOs);
+            
+            
             if (myOs == OS.mac) {
-                prefixKeyMap.set('option', '⌥ Option');
+                prefixKeyMap.set('option', keyText);
                 prefixKeyNameMap.set('option', 'option');
-            } else if (myOs == OS.windows) {
+            } else {
                 prefixKeyMap.set('alt', 'Alt');
-                prefixKeyNameMap.set('alt', 'alt');
-            }   else {
-                prefixKeyMap.set('alt', 'alt');
                 prefixKeyNameMap.set('alt', 'alt');
             }
         }
@@ -300,15 +319,13 @@ $('document').ready(function () {
             prefixKeyNameMap.delete('meta');
         } else {
             $(e.currentTarget).addClass('keyboard-keydown');
-
+            var keyText = getKeyTextFor(keys.win, myOs);
+            prefixKeyMap.set('meta', keyText);
             if (myOs == OS.mac) {
-                prefixKeyMap.set('meta', '⌘ Cmd');
                 prefixKeyNameMap.set('meta', 'cmd');
             } else if (myOs == OS.windows) {
-                prefixKeyMap.set('meta', '⊞ Win');
                 prefixKeyNameMap.set('meta', 'win');
             } else {
-                prefixKeyMap.set('meta', 'Meta');
                 prefixKeyNameMap.set('meta', 'Meta');
             }
         }
@@ -416,55 +433,46 @@ $('document').ready(function () {
         var kbHtmlString = prefixKeysHtml + '';
 
         if (e.ctrlKey) {
+            var keyText = getKeyTextFor(keys.ctrl, myOs);
+            kbString += keyText+' + ';
+            kbHtmlString += '<kbd>'+keyText+'</kbd>+';
+
             if (myOs == OS.mac) {
-                kbString += '⌃ Control + ';
-                kbHtmlString += '<kbd>⌃ Control</kbd>+';
                 generatedFilename += 'control_';
-            } else if (myOs == OS.windows) {
-                kbString += 'Ctrl + ';
-                kbHtmlString += '<kbd>Ctrl</kbd>+';
-                generatedFilename += 'ctrl_';
-            } else {
-                kbString += 'Ctrl + ';
-                kbHtmlString += '<kbd>Ctrl</kbd>+';
+            } else { // same for windows and other OS for now
                 generatedFilename += 'ctrl_';
             }
         }
 
         if(e.altKey){
+            var keyText = getKeyTextFor(keys.alt, myOs);
+            kbString += keyText+' + ';
+            kbHtmlString += '<kbd>'+keyText+'</kbd>+';
+
             if (myOs == OS.mac) {
-                kbString += '⌥ Option + ';
-                kbHtmlString += '<kbd>⌥ Option</kbd>+';
                 generatedFilename += 'option_';
-            } else if (myOs == OS.windows) {
-                kbString += 'Alt + ';
-                kbHtmlString += '<kbd>Alt</kbd>+';
-                generatedFilename += 'alt_';
             } else {
-                kbString += 'Alt + ';
-                kbHtmlString += '<kbd>Alt</kbd>+';
                 generatedFilename += 'alt_';
             }
         }
 
         if (e.shiftKey) {
-            kbString += 'Shift + ';
-            kbHtmlString += '<kbd>Shift</kbd>+';
+            var keyText = getKeyTextFor(keys.shift, myOs);
+            kbString += keyText+' + ';
+            kbHtmlString += '<kbd>'+keyText+'</kbd>+';
+
             generatedFilename += 'shift_';
         }
 
         if (e.metaKey) {
+            var keyText = getKeyTextFor(keys.win, myOs);
+            kbString += keyText+' + ';
+            kbHtmlString += '<kbd>'+keyText+'</kbd>+';
             if (myOs == OS.mac) {
-                kbString += '⌘ Cmd + ';
-                kbHtmlString += '<kbd>⌘ Cmd</kbd>+';
                 generatedFilename += 'cmd_';
             } else if (myOs == OS.windows) {
-                kbString += '⊞ Win + ';
-                kbHtmlString += '<kbd>⊞ Win</kbd>+';
                 generatedFilename += 'win_';
             } else {
-                kbString += 'Meta + ';
-                kbHtmlString += '<kbd>Meta</kbd>+';
                 generatedFilename += 'meta_';
             }
         }
@@ -487,6 +495,59 @@ $('document').ready(function () {
         e.preventDefault();
         e.stopPropagation();
     });
+
+    function getKeyTextFor(key, os) {
+        var symbol = '';
+        var text = '';
+        
+        if (key == keys.ctrl) {
+            symbol = '⌃ ';
+            if (os == OS.mac) {
+                text = 'Control';
+            } /* else if (os == OS.windows) { return 'Ctrl';}  */
+            else {
+                text = 'Ctrl';
+            }
+        }
+
+        if (key == keys.alt) {
+            symbol = '⌥ ';
+            if (os == OS.mac) {
+                text = 'Option';
+            } /* else if (os == OS.windows) { return 'Ctrl';}  */
+            else {
+                text = 'Alt';
+            }
+        }
+
+        if (key == keys.shift) {
+            symbol = '⇧ ';
+            if (os == OS.mac) {
+                text = 'Shift';
+            } /* else if (os == OS.windows) { return 'Ctrl';}  */
+            else {
+                text = 'Shift';
+            }
+        }
+        if (key == keys.win) {
+            if (myOs == OS.mac) {
+                symbol = '⌘ ';
+                text = 'Cmd';
+            } else if (myOs == OS.windows) {
+                symbol = '⊞ ';
+                text = 'Win';
+            } else {
+                symbol = 'Meta';
+                text = '';
+            }
+        }
+
+        if (showSymbolsOnly){
+            text = '';
+        }
+
+        return symbol+text;
+    }
 
 });
 
