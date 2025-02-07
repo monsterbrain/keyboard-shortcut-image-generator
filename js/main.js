@@ -9,6 +9,7 @@ var isTextInputMode = false;
 var generatedFilename = "";
 
 var showSymbolsOnly = false;
+var showNoSymbols = false;
 
 const keys = {
     ctrl: 'ctrlKey',
@@ -40,14 +41,28 @@ $('document').ready(function () {
         content: 'Resize from a larger image to improve quality',
       });
 
-      var symbolsOnlyCheckbox = document.querySelector("#only-symbols-checkbox");
+      var symbolsOnlyCheckbox = document.getElementById("only-symbols-checkbox");
+      var noSymbolsCheckbox = document.getElementById("no-symbols-checkbox");
 
       symbolsOnlyCheckbox.addEventListener("change", function () {
         showSymbolsOnly = this.checked;
+        showNoSymbols = !this.checked;
+        noSymbolsCheckbox.checked = !this.checked
         if (this.checked) {
           console.log("Symbols is checked..");
         } else {
           console.log("Symbols is not checked..");
+        }
+      });
+
+      noSymbolsCheckbox.addEventListener("change", function () {
+        showNoSymbols = this.checked;
+        showSymbolsOnly = !this.checked;
+        symbolsOnlyCheckbox.checked = !this.checked
+        if (this.checked) {
+          console.log("No symbols is checked..");
+        } else {
+          console.log("No Symbols is not checked..");
         }
       });
 
@@ -544,6 +559,10 @@ $('document').ready(function () {
 
         if (showSymbolsOnly){
             text = '';
+        }
+
+        if (showNoSymbols) {
+            symbol = '';
         }
 
         return symbol+text;
